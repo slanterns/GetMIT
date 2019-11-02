@@ -38,15 +38,20 @@ KeyboardInputManager.prototype.listen = function () {
     65: 3  // A
   };
 
+
+  
   document.addEventListener("keydown", function (event) {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
 
+    document.getElementById('music').play();
+
     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
         self.emit("move", mapped);
+        document.getElementById('music').play();
       }
 
       if (event.which === 32) self.restart.bind(self)(event);
